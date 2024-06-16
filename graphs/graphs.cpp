@@ -3,12 +3,12 @@ using namespace std;
 
 class graph {
     public:
-    map<int, set<int> > adj;
+    unordered_map<int, vector<int> > adj;
 
     void addEdge(int u, int v, bool direction) {
-        adj[u].insert(v);
+        adj[u].push_back(v);
         if(!direction) {
-            adj[v].insert(u);
+            adj[v].push_back(u);
         }
     }
 
@@ -20,6 +20,10 @@ class graph {
             }
             cout << endl;
         }
+    }
+
+    unordered_map<int, vector<int> > getAdjList() {
+        return adj;
     }
 };
 
@@ -45,6 +49,8 @@ int main() {
     }
 
     g.printGraph();
+
+    unordered_map<int, vector<int> > myAdjList = g.getAdjList();
 
 
     return 0;
